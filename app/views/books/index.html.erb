@@ -27,10 +27,23 @@
         <td><%= link_to 'Edit', edit_book_path(book) %></td>
         <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
+      <tr>
+        <% book.genres.each do |genre| %>
+          <td><%= link_to genre.name, '#', class: 'label label-primary' %></td>
+        <% end %>
+      </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
 
+<h3>Genres</h3>
+<ul class="list-unstyled">
+  <% @genres.each do |genre| %>
+    <li>
+      <%= link_to genre.name, books_path(filter: genre.name) %>
+    </li>
+  <% end %>
+</ul>
 <%= link_to 'New Book', new_book_path %>
